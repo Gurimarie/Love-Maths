@@ -14,6 +14,13 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
     }
+    // Allow user to also check answer by pressing Enter (in addition to by clicking check answer-button).
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    })
+
     runGame("addition");
 
 })
@@ -23,6 +30,11 @@ document.addEventListener("DOMContentLoaded", function() {
  * and after the user's answer has been processed.
  */
 function runGame(gameType) {
+    // Empties the answer-box on runGame, so it is ready for next game.
+    document.getElementById("answer-box").value = "";
+    // Returns focus (cursor) to box, ready for new game.
+    document.getElementById("answer-box").focus();
+
     // Creates random numbers between 1 and 25 (+1 to make sure we don't get 0)
     let num1 = Math.floor(Math.random() * 25) + 1;
     let num2 = Math.floor(Math.random() * 25) + 1;
